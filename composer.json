@@ -1,0 +1,13 @@
+{
+    "require": {
+        "silex/silex": "~2.0",
+		"twig/twig": "~1.26.1",
+		"symfony/twig-bridge": "~3.1.5",
+		"monolog/monolog": "~1.21.0",
+		"symfony/asset": "~3.1.5",
+		"symfony/yaml": "~3.1.5",
+		"rpodwika/yaml-config-service-provider": "~1.0.1",
+		"doctrine/dbal": "~2.5.5",
+		"symfony/security": "~3.1.5"
+    }
+}

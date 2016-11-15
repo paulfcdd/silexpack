@@ -1,0 +1,6 @@
+database:
+    driver: pdo_mysql
+    host: localhost
+    db_name: silexpack
+    db_user: root
+    db_password: null

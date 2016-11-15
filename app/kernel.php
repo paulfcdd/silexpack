@@ -1,0 +1,45 @@
+<?php
+use Silex\Application;
+use Rpodwika\Silex\YamlConfigServiceProvider;
+use Silex\Provider\DoctrineServiceProvider;
+use Silex\Provider\AssetServiceProvider;
+use Silex\Provider\SessionServiceProvider;
+use Silex\Provider\MonologServiceProvider;
+use Silex\Provider\TwigServiceProvider;
+
+$app = new Application();
+$app
+    ->register(new YamlConfigServiceProvider(__DIR__ . '/../config/config.yml'))
+    ->register(new DoctrineServiceProvider(), [
+        'db.options' => [
+            'driver' => $app['config']['database']['driver'],
+            'host' => $app['config']['database']['host'],
+            'user' => $app['config']['database']['db_user'],
+            'dbname' => $app['config']['database']['db_name'],
+            'password' => $app['config']['database']['db_password'],
+            'charset' => 'utf8mb4',
+        ],
+    ])
+    ->register(new AssetServiceProvider(), [
+        'assets.version_format' => '%s?version=%s',
+        'assets.named_packages' => array(
+            'css' => [
+                'base_path' => __DIR__ . '/../web/css',
+            ],
+            'images' => [
+                'base_path' => __DIR__ . '/../web/img',
+            ],
+            'js' => [
+                'base_path' => __DIR__ . '/../web/js',
+            ],
+        ),
+    ])
+    ->register(new MonologServiceProvider(), [
+        'monolog.logfile' => __DIR__ . '/../logs/syslog-'.date('d-m-Y').'.log'
+    ])
+    ->register(new SessionServiceProvider())
+    ->register(new TwigServiceProvider(), [
+        'twig.path' => __DIR__ . '/../tpl',
+    ]);
+
+return $app;
