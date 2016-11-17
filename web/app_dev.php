@@ -1,5 +1,4 @@
 <?php
-use Symfony\Component\Debug\Debug;
 
 if (isset($_SERVER['HTTP_CLIENT_IP'])
     || isset($_SERVER['HTTP_X_FORWARDED_FOR'])
@@ -10,9 +9,8 @@ if (isset($_SERVER['HTTP_CLIENT_IP'])
 }
 require_once __DIR__ . '/../vendor/autoload.php';
 
-Debug::enable();
-
 $app = require_once __DIR__ . '/../app/kernel.php';
+$app['debug'] = true;
 require_once __DIR__ . '/../src/service/service.php';
 require_once __DIR__ . '/../src/controller/actions.php';
 require_once __DIR__ . '/../src/controller/controller.php';

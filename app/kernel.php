@@ -6,6 +6,7 @@ use Silex\Provider\AssetServiceProvider;
 use Silex\Provider\SessionServiceProvider;
 use Silex\Provider\MonologServiceProvider;
 use Silex\Provider\TwigServiceProvider;
+use Silex\Provider\HttpFragmentServiceProvider;
 
 $app = new Application();
 $app
@@ -37,6 +38,7 @@ $app
     ->register(new MonologServiceProvider(), [
         'monolog.logfile' => __DIR__ . '/../logs/syslog-'.date('d-m-Y').'.log'
     ])
+	->register(new HttpFragmentServiceProvider())
     ->register(new SessionServiceProvider())
     ->register(new TwigServiceProvider(), [
         'twig.path' => __DIR__ . '/../tpl',
