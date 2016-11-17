@@ -3,17 +3,18 @@ use Silexpack\Service\Service;
 
 $service = new Service($app['db']);
 
-$pages = $app['db']->fetchAll("SELECT * FROM pages");
+$pages = $service->selectAll('pages');
 
 $app->get('/header', function () use ($app, $pages) {
-	return $app['twig']->render('header.twig', [
+	return $app['twig']->render('default/header.twig', [
+		'siteName' => 'Silexpack',
 		'pages'=>$pages,
 	]);
 })->bind('header');
 
 foreach ($pages as $page) {
 	$app->get($page['pattern'], function () use ($app, $service, $page) {
-		return $app['twig']->render($page['pageName'] . '.twig', [
+		return $app['twig']->render('default/'.$page['pageName'] . '.twig', [
 			'title' => $page['title'],
 			'description' => $page['description'],
 			'keywords' => $page['keywords'],
