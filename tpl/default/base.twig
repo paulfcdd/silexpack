@@ -5,9 +5,9 @@
 	<meta name="viewport"
 		  content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"/>
 	<title>{% block title %}{% endblock %}</title>
-	<link rel="shortcut icon" href="{{ asset('web/img/favicon.ico') }}">
-	<link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
-	<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+	{#<link rel="shortcut icon" href="{{ asset('default/img/favicon.ico') }}">#}
+	<link href="{{ asset('default/css/style.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('default/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
 
 </head>
 <body>
@@ -15,9 +15,7 @@
 <div class="wrapper">
 
 	<div class="header">
-		{#{{ dump(url('index')) }}#}
 		{{ render(url('header')) }}
-		{#{% include 'header.twig' %}#}
 	</div>
 	<div class="content">
 		<div class="container">
