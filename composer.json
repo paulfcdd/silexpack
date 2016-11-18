@@ -30,7 +30,10 @@
 	},
 	"extra": {
 		"incenteev-parameters": {
-			"file": "config/config.yml"
+			"file": "config/config.yml",
+			"dist-file": "config/config.yml.dist",
+			"parameter-key": "config",
+			"keep-outdated": true
 		}
 	}
 }
