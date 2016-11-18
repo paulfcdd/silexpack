@@ -15,11 +15,11 @@ $app
     ->register(new YamlConfigServiceProvider(__DIR__ . '/../config/config.yml'))
     ->register(new DoctrineServiceProvider(), [
         'db.options' => [
-            'driver' => $app['config']['database']['driver'],
-            'host' => $app['config']['database']['host'],
-            'user' => $app['config']['database']['db_user'],
-            'dbname' => $app['config']['database']['db_name'],
-            'password' => $app['config']['database']['db_password'],
+            'driver' => $app['config']['config']['driver'],
+            'host' => $app['config']['config']['host'],
+            'user' => $app['config']['config']['db_user'],
+            'dbname' => $app['config']['config']['db_name'],
+            'password' => $app['config']['config']['db_password'],
             'charset' => 'utf8mb4',
         ],
     ])
