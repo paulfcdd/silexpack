@@ -8,7 +8,7 @@ $pages = $service->selectAll('pages');
 $app->get('/header', function () use ($app, $pages) {
 	return $app['twig']->render('default/header.twig', [
 		'siteName' => 'Silexpack',
-		'pages'=>$pages,
+		'pages' => $pages,
 	]);
 })->bind('header');
 
