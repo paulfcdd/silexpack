@@ -3,22 +3,33 @@ namespace Silexpack\Service;
 
 class Service {
 
-	private $conn;
+	/**
+	 * @var \Silex\Application
+	 */
+	private $app;
 
-	public function __construct($conn)
+	/**
+	 * Service constructor.
+	 * @param \Silex\Application $app
+	 */
+	public function __construct(\Silex\Application $app)
 	{
-		$this->conn = $conn;
+		$this->app = $app;
 	}
 
-	public function test(){
-		return 'test';
-	}
-
+	/**
+	 * @param string $tableName
+	 * @return mixed
+	 */
 	public function selectAll(string $tableName){
 		$tableName = $this->validateTableName($tableName);
-		return $this->conn->fetchAll("SELECT * FROM `$tableName`");
+		return $this->app['db']->fetchAll("SELECT * FROM `$tableName`");
 	}
 
+	/**
+	 * @param $tableName
+	 * @return string
+	 */
 	private function validateTableName($tableName){
 		$tableName = strtolower($tableName);
 		$tableName = trim($tableName);
