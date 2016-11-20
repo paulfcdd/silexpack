@@ -1,6 +1,8 @@
 <?php
 namespace Silexpack\Service;
 
+use Silex\Application;
+
 class Service {
 
 	/**
@@ -10,9 +12,9 @@ class Service {
 
 	/**
 	 * Service constructor.
-	 * @param \Silex\Application $app
+	 * @param Application $app
 	 */
-	public function __construct(\Silex\Application $app)
+	public function __construct(Application $app)
 	{
 		$this->app = $app;
 	}
@@ -23,7 +25,7 @@ class Service {
 	 */
 	public function selectAll(string $tableName){
 		$tableName = $this->validateTableName($tableName);
-		return $this->app['db']->fetchAll("SELECT * FROM `$tableName`");
+		return $this->app['db']->fetchAll("SELECT * FROM $tableName");
 	}
 
 	/**
