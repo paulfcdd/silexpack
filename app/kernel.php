@@ -1,14 +1,10 @@
 <?php
 use Silex\Application;
 use Rpodwika\Silex\YamlConfigServiceProvider;
-use Silex\Provider\DoctrineServiceProvider;
-use Silex\Provider\AssetServiceProvider;
-use Silex\Provider\SessionServiceProvider;
-use Silex\Provider\MonologServiceProvider;
-use Silex\Provider\TwigServiceProvider;
-use Silex\Provider\HttpFragmentServiceProvider;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
+use Silex\Provider\{
+    DoctrineServiceProvider, AssetServiceProvider, SessionServiceProvider, MonologServiceProvider, TwigServiceProvider, HttpFragmentServiceProvider,
+    WebProfilerServiceProvider, ServiceControllerServiceProvider
+};
 
 $app = new Application();
 $app
@@ -38,12 +34,17 @@ $app
         ),
     ])
     ->register(new MonologServiceProvider(), [
-        'monolog.logfile' => __DIR__ . '/../logs/syslog-'.date('d-m-Y').'.log'
+        'monolog.logfile' => __DIR__ . '/../logs/syslog-' . date('d-m-Y') . '.log'
     ])
-	->register(new HttpFragmentServiceProvider())
+    ->register(new HttpFragmentServiceProvider())
     ->register(new SessionServiceProvider())
     ->register(new TwigServiceProvider(), [
         'twig.path' => __DIR__ . '/../tpl',
-    ]);
+    ])
+    ->register(new WebProfilerServiceProvider(), [
+        'profiler.cache_dir' => __DIR__.'/../cache/profiler',
+        'profiler.mount_prefix' => '/_profiler',
+    ])
+    ->register(new ServiceControllerServiceProvider());
 
 return $app;
